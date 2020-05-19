@@ -1,0 +1,21 @@
+/* cwrapper  */
+.wrapper-left{
+    width: 25%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    min-height: 45vh;
+    display: inline-block;
+}
+.wrapper-right{
+    width: 67.5%;
+    margin-right: 2.5%;
+    min-height: 50vh;
+    vertical-align: top;
+    display: inline-block;
+}
+.history{
+    width: 67.5%;
+    display: inline-block;
+    margin-left: 30%;
+    margin-right: 2.5%;
+}

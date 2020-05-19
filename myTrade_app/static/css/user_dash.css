@@ -1,0 +1,48 @@
+/* wrappers */
+.wrapper-left{
+    width: 25%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    min-height: 50vh;
+    display: inline-block;
+}
+.wrapper-right{
+    width: 67.5%;
+    margin-right: 2.5%;
+    vertical-align: top;
+    display: inline-block;
+    /* min-height: 100vh; */
+}
+/* utility */
+.balance{
+    text-align: center;
+}
+.avatar{
+    display: inline-block;
+    border-radius: 50%;
+}
+/* containers */
+#stock-search{
+    width: 45%;
+    display: inline-block;
+}
+#trade_graph{
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 2.5%;
+    width: 52.5%;
+}
+#latest-table{
+    display: none;
+}
+/* comment and posts */
+.comment{
+    width: 95%;
+    margin-left: 5%;
+}
+.posts a{
+    text-decoration: none;
+}
+.comment a{
+    text-decoration: none;
+}

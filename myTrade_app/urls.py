@@ -1,0 +1,31 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index),
+    path('register', views.register),
+    path('process_register', views.process_register),
+    path('login', views.login),
+    path('process_login', views.process_login),
+    path('logout', views.logout),
+    path('user_dash', views.user_dash),
+    path('find_stock', views.find_stock),
+    path('buy_stock', views.buy_stock),
+    path('sell/<str:trade_id>', views.sell_trade),
+    path('sell_shares', views.sell_shares),
+    path('current_price/<str:trade_id>', views.current_price),
+    path('view_stock', views.view_stock),
+    path('view_stats/<int:trade_id>', views.view_stats),
+    path('user_profile', views.user_profile),
+    path('view_profile/<int:id>', views.view_profile),
+    path('profile_settings', views.profile_settings),
+    path('create_post', views.create_post),
+    path('create_comment', views.create_comment),
+    path('like/<int:id>', views.like),
+    path('feed', views.feed),
+    path('user_account', views.user_account),
+    path('add_balance', views.add_balance),
+    path('user_analytics', views.user_analytics),
+    path('update_bio', views.update_bio),
+    path('update_avatar', views.update_avatar),
+]

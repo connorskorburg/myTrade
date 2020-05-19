@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/logreg.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- navbar with pinstripe background -->
+    <div class="container-fluid ">
+        <nav class="navbar navbar-expand">
+            <div class="container">
+                <a href="/" class="navbar-brand  text-dark px-3 py-2 font-weight-bold">MyTrade <i class="fas fa-piggy-bank"></i></a>
+                <ul class="navbar-nav">
+                    <span class="nav-item font-weight-bold mr-2 mt-2">Still Need to Sign Up?</span>
+                    <li><a href="register" role="button" class="btn btn-dark nav-item mr-1 font-weight-bold">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="mx-auto wrapper">
+        <!-- login -->
+        <form action="/process_login" method="post" class="p-4 border rounded text-center log-form">
+            {% csrf_token %}
+            <h2>Login</h2>
+             <!-- validation errors messages -->
+            {% if messages %}
+            <div class="messages text-center m-auto">
+                {% for message in messages %}
+                <p {% if message.tags %} class="mb-1 text-danger py-1 border rounded {{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}     
+            <input type="text" class="form-control my-3" name="username" placeholder="Username">
+            <input type="password" class="form-control mb-3" name="password" placeholder="Password">
+        <button type="submit" class="btn btn-dark btn-block">Login</button>
+        </form>
+    </div>

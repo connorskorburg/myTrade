@@ -1,0 +1,41 @@
+/* form styling */
+.reg-form{
+    width: 45rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+}
+.log-form{
+    width: 30rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+}
+.form-group{
+    display: inline-block;
+}
+
+/* wrapper styling */
+.wrapper{
+    padding-top: 0.5rem;
+    height: 89.8vh;
+}
+textarea{
+    resize: none;
+    min-height: 7rem;
+}
+.avatar-div{
+    display: inline-block;
+    width: 24%;
+    margin-bottom: 5%;
+}
+.wrapper-left, .wrapper-right{
+    display: inline-block;
+    width: 50%;
+    min-height: 60vh;
+}
+.wrapper-right{
+    vertical-align: top;
+}
+.btn-reg{
+    margin-left: 11rem;
+    width: 7rem;
+}

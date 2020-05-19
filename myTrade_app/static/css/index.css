@@ -1,0 +1,32 @@
+/* overlay classes */
+#stock_overlay{
+    min-height: 90vh;
+    background-image: url("../img/overlay.jpg");
+    /* background-image: url("../img/stock12.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    image-rendering: -webkit-optimize-contrast;
+    background-position: right center;
+}
+.overview{
+    min-height: 10vh;
+}
+#welcome_overlay{
+    margin-top: 4rem;
+    color: #fff;
+}
+.jumbotron{
+    border-radius: 0 !important;
+}
+
+/* utility classes */
+.my-none{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+/* back to top styling */
+#bottom{
+    margin-left: 65%;
+}

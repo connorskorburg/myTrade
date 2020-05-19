@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile Settings</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/profile_settings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- side navbar -->
+    <div class="side-nav" id="nav-toggle">
+        <a href="" class="hamburger" onclick="closeNav()"><i class="fas fa-times fa-2x mb-3"></i></a>
+        <div class="side-nav-inner">
+            <a href="/user_dash" class="text-dark active"><i class="text-dark fas fa-home"></i> My Dashboard</a>
+            <a href="/user_profile" class="text-dark"><i class="text-dark fas fa-user-circle"></i> My Profile</a>
+            <a href="/feed" class="text-dark"><i class="text-dark fas fa-user-friends"></i> My Feed</a>
+            <a href="/user_account" class="text-dark"><i class="text-dark fas fa-address-card"></i> My Account</a>
+            <a href="/user_analytics" class="text-dark"><i class="text-dark fas fa-chart-bar"></i> My Analytics</a>
+        </div>
+    </div>
+            <!-- navbar with pinstripe background -->
+    <div id="all-content">
+        <nav class="navbar navbar-expand pinstripe">
+            <a role="button" class=" mr-3 btn" onclick="openNav()"><i class="text-hamburger fas fa-bars fa-2x"></i></a>
+            <div class="container">
+                <a href="/" class="navbar-brand text-dark px-3 py-2 font-weight-bold ">MyTrade <i class="fas fa-piggy-bank"></i></a>
+                <ul class="navbar-nav">
+                    <li><a href="logout" role="button" class="btn btn-dark nav-item mr-1 font-weight-bold">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- div to update bio -->
+        <div class="bio-update bg-light p-4 border rounded mt-3">
+            <h3 class="text-center font-weight-bold mb-3">Update Bio</h3>
+            <form action="/update_bio" method="post">
+            {% csrf_token %}
+            <textarea name="bio" class="form-control mb-3" >{{user.bio}}</textarea>
+            <button type="submit" class="btn btn-dark btn-block">Update Bio</button>
+            </form>
+            <!-- touching divs for inline block and div for avatar update -->
+        </div><div class="avatar-update border bg-light rounded mt-3 p-4">
+            <h3 class="text-center font-weight-bold mb-3">Change Avatar</h3>
+                <form action="/update_avatar" class="text-center" method="post">
+                    {% csrf_token %} 
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-bomb">
+                        <i class="fas fa-bomb fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-dragon">
+                        <i class="fas fa-dragon fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-crown">
+                        <i class="fas fa-crown fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-anchor"">
+                        <i class="fas fa-anchor fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-crow">
+                        <i class="fas fa-crow fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-ghost">
+                        <i class="fas fa-ghost fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-atom">
+                        <i class="fas fa-atom fa-2x"></i>
+                    </div>
+                    <div class="avatar-div">
+                        <input type="radio" name="av_icon" value="fa-rocket">
+                        <i class="fas fa-rocket fa-2x"></i>
+                    </div>
+                    <button type="submit" class="btn btn-dark text-light font-weight-bold avatar-btn">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/index.js' %}"></script>
+</html>

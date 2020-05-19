@@ -1,0 +1,50 @@
+/* wrappers */
+.wrapper-left{
+    width: 25%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    min-height: 50vh;
+    display: inline-block;
+}
+.wrapper-right{
+    width: 67.5%;
+    margin-right: 2.5%;
+    min-height: 100vh;
+    vertical-align: top;
+    display: inline-block;
+}
+/* avatar */
+.avatar{
+    display: inline-block;
+    border-radius: 50%;
+}
+/* comment */
+.comment, .new-comment{
+    width: 95%;
+    margin-left: 5%;
+}
+.comment a{
+    text-decoration: none;
+}
+.comment_text{
+    resize: none;
+    min-height: 10vh;
+}
+/* like */
+.like:hover{
+    color: #405663;
+}
+/* posts */
+.post_text{
+    resize: none;
+    min-height: 15vh;
+}
+/* utility */
+.inner-profile a, .post a{
+    text-decoration: none;
+}
+.font-sm{
+    font-size: 0.85rem;
+    /* margin-left: 55%; */
+    /* justify-content: right; */
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>My Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- side navbar -->
+    <div class="side-nav" id="nav-toggle">
+        <a href="" class="hamburger" onclick="closeNav()"><i class="fas fa-times fa-2x mb-3"></i></a>
+        <div class="side-nav-inner">
+            <a href="/user_dash" class="text-dark"><i class="text-dark fas fa-home"></i> My Dashboard</a>
+            <a href="/user_profile" class="text-dark active"><i class="text-dark fas fa-user-circle"></i> My Profile</a>
+            <a href="/feed" class="text-dark"><i class="text-dark fas fa-user-friends"></i> My Feed</a>
+            <a href="/user_account" class="text-dark"><i class="text-dark fas fa-address-card"></i> My Account</a>
+            <a href="/user_analytics" class="text-dark"><i class="text-dark fas fa-chart-bar"></i> My Analytics</a>
+        </div>
+    </div>
+            <!-- nav top -->
+    <div id="all-content">
+        <nav class="navbar navbar-expand pinstripe ">
+            <a role="button" class=" mr-3 btn" onclick="openNav()"><i class="text-hamburger fas fa-bars fa-2x"></i></a>
+            <div class="container">
+                <a href="/" class="navbar-brand text-dark px-3 py-2 font-weight-bold ">MyTrade <i class="fas fa-piggy-bank"></i></a>
+                <ul class="navbar-nav">
+                    <li><a href="logout" role="button" class="btn btn-dark nav-item mr-1 font-weight-bold">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- feed -->
+        <div class="wrapper-left profile rounded font-weight-bold">
+            <div class="inner-profile text-center bg-light rounded border pt-2 rounded p-3 mt-3 mb-3">
+                <div class="avatar p-3 mb-1">
+                    <i class=" fas {{user.avatar}} fa-3x"></i>
+                </div>
+                <h3 class="font-weight-bold text-dark">@{{ user.username}}</h3>
+                <a href="" class="text-info">{{ user.followers.count }}</a> <span>
+                <a href="" class="text-info">{{ user.posts.count }}</a> <span class="text-dark">Posts</span>
+                <p class="mt-2 text-dark">{{user.bio}}</p>
+                <p class="text-dark">Joined {{ user.created_at|date:"M d, Y"  }}</p>
+                <a href="/profile_settings" role="button" class="btn btn-dark font-weight-bold">Profile Settings</a>
+            </div>
+        </div><div class="wrapper-right font-weight-bold text-dark">
+            <div class="posts font-weight-bold py-3">
+                <!-- posts -->
+                <h3 class="mb-3 font-weight-bold text-dark">My Posts</h3>
+                {% for post in user_posts %}
+                <div class="post p-2 rounded bg-light border mb-1">
+                    <a href="/view_profile/{{post.poster.id}}" class="h5 text-dark"> <i class="fas {{post.poster.avatar}} fa-sm"></i> {{ post.poster.username }}</a>
+                    <span class="like">{{post.user_who_liked.count}} <i class="fas fa-heart"></i></span>
+                    <p class="font-sm ml-2"> {{post.created_at}}</p>
+                    <p class="px-2">{{post.content}}</p>    
+                </div>
+                <!-- comments -->
+                {% for comment in post.comments.all %}
+                <div class="comment rounded border p-2 bg-light mb-1">
+                    <a href="/view_profile/{{comment.commenter.id}}" class="h6 text-dark"> <i class="fas {{post.poster.avatar}} fa-sm"></i> {{ comment.commenter.username}}</a>
+                    <p class=" px-2 mt-1">{{comment.content}}</p>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/index.js' %}"></script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/logreg.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- navbar with pinstripe background -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand">
+            <div class="container">
+                <a href="/" class="navbar-brand text-dark px-3 py-2 font-weight-bold">MyTrade <i class="fas fa-piggy-bank"></i></a>
+                <ul class="navbar-nav">
+                    <span class="nav-item text-dark font-weight-bold mr-2 mt-2">Already Signed Up?</span>
+                    <li><a href="login" role="button" class="btn btn-dark nav-item mr-1 font-weight-bold">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="wrapper mx-auto">
+        <form action="/process_register" method="post" class="p-4 text-center rounded border reg-form">
+            <h2 class="mb-3 heading">Register</h2>
+            <!-- validation errors messages -->
+            {% if messages %}
+            <div class="messages text-center m-auto">
+                {% for message in messages %}
+                <p {% if message.tags %} class="mb-1 text-danger py-1 border rounded {{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %} 
+            <div class="wrapper-left p-4">
+            <!-- left side of reg -->
+                {% csrf_token %}
+                <input type="text" class="form-control mb-3" name="first_name" placeholder="First Name">
+                <input type="text" class="form-control mb-3" name="last_name" placeholder="Last Name">
+                <input type="text" class="form-control mb-3" name="email" placeholder="Email">  
+                <input type="text" class="form-control mb-3" name="username" placeholder="Username">
+                <input type="password" class="form-control mb-3" name="password" placeholder="Password">
+                <input type="password" class="form-control mb-3" name="conf_password" placeholder="Confirm Password">
+                <!-- right side of reg and d-inline-block for touching divs -->
+            </div><div class="wrapper-right px-3 p-4">
+                <textarea name="bio" class="form-control mb-3" placeholder="Your Bio""></textarea>
+                <h4 class="mb-3">Choose Avatar</h4>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-bomb" class="">
+                    <i class="fas fa-bomb fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-dragon" class="">
+                    <i class="fas fa-dragon fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-crown" class="">
+                    <i class="fas fa-crown fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-anchor" class="">
+                    <i class="fas fa-anchor fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-crow" class="">
+                    <i class="fas fa-crow fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-ghost" class="">
+                    <i class="fas fa-ghost fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-atom" class="">
+                    <i class="fas fa-atom fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-rocket" class="">
+                    <i class="fas fa-rocket fa-2x"></i>
+                </div>
+                <div class="avatar-div">
+                    <input type="radio" name="av_icon" value="fa-knight" class="">
+                    <i class="fas fa-chess-knight fa-2x"></i>
+                </div>
+                <button type="submit" class="btn btn-dark mt-3 btn-reg">Register</button>
+            </div>    
+        </form>
+    </div>
+</body>
+</html>

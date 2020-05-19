@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTrade</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-light">
+    <!-- reference to top of the page -->
+    <div id="top"></div>
+    <!-- navbar with pinstripe background -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand pinstripe">
+            <div class="container">
+                <a href="" id="logo" class="navbar-brand text-dark px-3 py-2 font-weight-bold">MyTrade <i class="fas fa-piggy-bank"></i></a>
+                <ul class="navbar-nav">
+                    <li><a href="#about" role="button" class=" btn text-dark nav-item mr-1 font-weight-bold">About</a></li>
+                    <li><a href="/login" role="button" class="btn text-dark nav-item mr-1 font-weight-bold">Login</a></li>
+                    <li><a href="/register" role="button" class="btn text-dark nav-item font-weight-bold">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- welcome to mytrade div with background of the stats image -->
+    <div class="jumbotron my-none" id="stock_overlay">
+        <div id="welcome_overlay" class="text-center p-5 mr-3">
+            <h1 class="display-2">Welcome to <span class="font-weight-bold">MyTrade</span></h1>
+            <a href="/register" role="button" class="btn btn-dark px-3 py-2 text-light font-weight-bold">Get Started!</a>
+        </div>
+    </div>
+    <!-- middle of the page overview -->
+    <div class="overview pinstripe-dark py-5 px-3">
+        <p class="lead text-center text-light">MyTrade is an experience where you can simulate trades in real time without spending any money. See how your trades are doing without any risk!</p>
+    </div>
+    <!-- about section -->
+    <div id="about" class="container-fluid p-3 card-columns pt-4 text-center pinstripe">
+       <div class="about-div">
+           <img src="../../static/img/money.jpg" alt="" class="img-fluid mb-3">
+            <h4>Simulate Trades In Real Time</h4>
+            <p>Create real time trades without having to spend any money! All trades are up to date with the current market.</p>
+       </div>
+       <div class="about-div">
+           <img src="../../static/img/people.jpg" alt="" class="img-fluid mb-3">
+            <h4>Interact With Other Traders</h4>
+            <p>You can like, comment, and post whatever you would like on the MyFeed tab. Share your trades or ask for advice!</p>
+       </div>
+       <div class="about-div">
+           <img src="../../static/img/analytics.jpg" alt="" class="img-fluid mb-3">
+            <h4>View Your Analytics</h4>
+            <p>See all of your trades, View simple moving averages and closing prices of each trade!</p>
+       </div>      
+       <div>
+           <!-- link to get back to top -->
+           <a href="#top" role="button" id="bottom" class= "btn btn-dark my-3">Back to top</a>
+       </div>
+    </div>
+    
+</body>
+</html>

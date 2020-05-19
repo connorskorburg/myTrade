@@ -1,0 +1,46 @@
+/* wrappers */
+.graphs{
+    width: 20rem;
+    min-height: 20rem;
+}
+.wrapper-right{
+    width: 45%;
+    margin-left: 2.5%;
+    display: inline-block;
+}
+.chart-div{
+    display: inline-block;
+    width: 46.25%;
+    min-height: 50vh;
+}
+.sma-div{
+    vertical-align: top;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+.close-div{
+    margin-left: 2.5%;
+}
+/* errors */
+#error_msg1, #error_msg2{
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+}
+/* top stats */
+.wrapper-top{
+    width: 100%;
+}
+.wrapper-top div{
+    width: 25%;
+    display: inline-block;
+    min-height: 10vh;
+}
+/* chart */
+#main-chart{
+    display: inline-block;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    vertical-align: top;
+    width: 47.5%;
+}

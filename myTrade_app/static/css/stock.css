@@ -1,0 +1,12 @@
+.shares-input{
+    width: 5rem;
+}
+.wrapper{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: inline-block;
+}
+#show-total{
+    display: none;
+}

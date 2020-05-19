@@ -1,0 +1,34 @@
+/* update containers */
+.avatar-update{
+    width: 47.5%;
+    margin-right: 2.5%;
+    display: inline-block;
+    vertical-align: top;
+    min-height: 50vh;
+}
+.bio-update{
+    margin-left: 2.5%;
+    width: 45%;
+    margin-right: 2.5%;
+    display: inline-block;
+    vertical-align: top;
+    min-height: 50vh;
+}
+/* utlility */
+.avatar-div{
+    display: inline-block;
+    width: 24%;
+    margin-bottom: 5%;
+}
+.radio{
+    display: inline-block;
+    margin-left: 45%;
+    margin-top: 5%;
+}
+.avatar-btn{
+    margin-left: 70%;
+}
+textarea{
+    resize: none;
+    min-height: 15vh;
+}

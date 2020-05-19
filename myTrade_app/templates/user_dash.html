@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/user_dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="">
+    <!-- side navbar -->
+    <div class="side-nav" id="nav-toggle">
+        <a href="" class="hamburger" onclick="closeNav()"><i class="fas fa-times fa-2x mb-3"></i></a>
+        <div class="side-nav-inner">
+            <a href="/user_dash" class="text-dark active"><i class="text-dark fas fa-home"></i> My Dashboard</a>
+            <a href="/user_profile" class="text-dark"><i class="text-dark fas fa-user-circle"></i> My Profile</a>
+            <a href="/feed" class="text-dark"><i class="text-dark fas fa-user-friends"></i> My Feed</a>
+            <a href="/user_account" class="text-dark"><i class="text-dark fas fa-address-card"></i> My Account</a>
+            <a href="/user_analytics" class="text-dark"><i class="text-dark fas fa-chart-bar"></i> My Analytics</a>
+        </div>
+    </div>
+            <!-- nav top -->
+    <div id="all-content">
+        <nav class="navbar navbar-expand pinstripe">
+            <a role="button" class=" mr-3 btn" onclick="openNav()"><i class="text-hamburger fas fa-bars fa-2x"></i></a>
+            <div class="container">
+                <a href="/" class="btn-brand-2 navbar-brand text-dark px-3 py-2 font-weight-bold ">MyTrade <i class="fas fa-piggy-bank"></i></a>
+                <ul class="navbar-nav">
+                    <li><a href="logout" role="button" class="btn btn-dark nav-item mr-1 font-weight-bold">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="user_display">
+            <div class="wrapper-left">
+                <!-- profile left -->
+                <div class="inner-profile text-center pt-2 border rounded p-3 my-3 bg-light">
+                    <div class="avatar p-3  mb-1">
+                        <i class=" fas {{user.avatar}} fa-3x"></i>
+                    </div>
+                    <h2 class="font-weight-bold">@{{ user.username }}</h2>
+                    <a href="" class="text-info">{{ user.posts.count }}</a> <span class="brand">Posts</span>
+                    <p class="mt-2">Joined {{ user.created_at|date:"M d, Y"  }}</p>
+                    <a href="/profile_settings" role="button" class="btn btn-dark font-weight-bold">Profile Settings</a>
+                </div>
+                <!-- account balance -->
+                <div class="balance p-3 border rounded mb-3 bg-light">
+                    <h2 class="font-weight-bold text-center">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <h4 class="font-weight-bold mb-3">Account Balance:</h4><h5 class="bg-white py-2 border rounded text-success font-weight-bold h5">${{ account_balance }}</h5>
+                </div>
+                {% if user.sold_trades.count != 0 %}
+                <!-- latest trade -->
+                <div class="sold_trade p-3 bg-light border rounded">
+                    <h4 class="text-center">Last Trade Sold</h4>
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Shares</th>
+                                <th>Total Recieved</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>{{latest_sold_trade.trade.symbol}}</td>
+                            <td>{{latest_sold_trade.shares_sold}}</td>
+                            <td>${{latest_sold_trade.total_price_gained}}</td>
+                        </tr>
+                    </table>
+                </div>
+                {% endif %}
+            </div><div class="wrapper-right">
+                <!-- search for stock -->
+                <div id="stock-search">
+                    <div id="make-trades" class="mt-3 bg-light p-4 border rounded">
+                        <h2 class="font-weight-bold text-center">Make a Trade</h2>
+                        <form action="/find_stock" method="post">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Enter Symbol" name="stock" class="form-control mb-3" onkeyup="this.value = this.value.toUpperCase();">
+                            <button type="submit" class="btn btn-dark btn-block">Search</button>
+                        </form>
+                    </div>
+                    <!-- top 3 latest posts -->
+                    <div class="latest_post mt-3 bg-light p-4 border rounded">
+                        {% if user.posts.count != 0 %}
+                        {% if latest_posts.count == 1 %}
+                        <h4 class="text-center mb-3">My Last Post</h4>
+                        {% elif latest_posts.count == 2%}
+                        <h4 class="text-center mb-3">My Last 2 Posts</h4>
+                        {% elif latest_posts.count == 3 %}
+                        <h4 class="text-center mb-3">My Last 3 Posts</h4>
+                        {% endif %}
+                        {% for post in latest_posts %}
+                        <div class="border rounded p-2 bg-light mb-1 posts">
+                            <a href="/view_profile/{{post.poster.id}}" class="h5 text-dark font-weight-bold"> <i class="fas {{post.poster.avatar}} fa-sm"></i> {{ post.poster.username }}</a>
+                            <span class="text-dark">{{ post.user_who_liked.count }} <i class="fas fa-heart"></i></span>
+                            <p class="text-dark px-2">{{ post.content }}</p>    
+                        </div>
+                        {% for comment in post.comments.all %}
+                        <div class="comment border rounded p-2 mb-1 bg-light">
+                            <a href="/view_profile/{{comment.commenter.id}}" class="h6 text-dark "> <i class="fas {{post.poster.avatar}} fa-sm"></i> {{ comment.commenter.username }}</a>
+                            <p class="text-dark px-2 mt-1">{{ comment.content }}</p>
+                        </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% elif user.posts.count == 0 %}
+                    <div class="text-center">
+                        <p class="font-weight-bold">No posts yet</p>
+                    </div>
+                    {% endif %}
+                    </div>
+                    <!-- latest trade graph -->
+                </div><div id="trade_graph">
+                    {% if user.trades.count != 0 %}
+                    <div id="latest_graph" class="mt-3 p-3 border rounded bg-light">
+                        <h4>Latest Trade: {{latest_trade.symbol}}</h4>
+                        <input type="hidden" id="symbol" value="{{latest_trade.symbol}}">
+                        <canvas id="chart"></canvas>
+                    </div>
+                    <!-- trades and shares -->
+                    <div id="trades" class="bg-light border rounded mt-3 p-4">
+                        <h3 class="font-weight-bold text-center">My Trades</h3>
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Shares</th>
+                                </tr>
+                            </thead>
+                            {% for trade in trades %}
+                            {% if trade.shares != 0 %}
+                            <tr>
+                                <td>{{trade.symbol}}</td>
+                                <td>{{trade.shares}}</td>
+                            </tr>
+                            {% endif%}
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {% endif%}
+                </div>               
+            </div>
+        </div>      
+    </div>
+</body>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script src="{% static 'js/user_dash.js' %}"></script>
+</html>
